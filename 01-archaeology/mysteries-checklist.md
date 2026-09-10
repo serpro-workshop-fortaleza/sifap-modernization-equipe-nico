@@ -74,14 +74,22 @@ Os rótulos indicam a **área** do mistério, nunca o achado.
 
 Preencha com os IDs da sua dupla (por exemplo, a Dupla 2 preenche de `M-05` a `M-08`).
 
-| ID canônico | Encontrado | Registrado em `mysteries-found.md` |
-|---|---|---|
-| `SIFAP-M-__` | [ ] | [ ] |
-| `SIFAP-M-__` | [ ] | [ ] |
-| `SIFAP-M-__` | [ ] | [ ] |
-| `SIFAP-M-__` | [ ] | [ ] |
+| ID canônico | Encontrado | Registrado em `mysteries-found.md` | Validação humana |
+|---|---|---|---|
+| `SIFAP-M-05` | [x] | [x] | [x] Pedro de Lara · 2026-09-10 |
+| `SIFAP-M-06` | [x] | [x] | [x] Pedro de Lara · 2026-09-10 |
+| `SIFAP-M-07` | [x] | [x] | [x] Pedro de Lara · 2026-09-10 — resíduo `X`/`R` reaberto como bônus |
+| `SIFAP-M-08` | [x] | [x] | [x] Pedro de Lara · 2026-09-10 |
 
-**Achados adicionais (bônus):** <!-- liste aqui; não mudam o denominador -->
+**Achados adicionais (bônus):** 27 registrados, todos abertos. Não mudam o denominador.
+
+- **14 da leitura batch e de `CALCDSCT`** — arredondamento do relatório consolidado, alíquota de 3% fixa versus tabela progressiva, truncamento `A3`→`A1` de `TYPE-DISC`, tabela de UF por região, fevereiro com 29 dias, números de arquivo no cabeçalho, sequência de `NUM-PAYMENT` sem trava, código de retorno bancário desconhecido, tolerância de R$ 0,01, `CALCDSCT` sem chamador, RN-021 versus código, ordem do grupo periódico, faixa de contribuição ausente e ausência de auditoria no cálculo de descontos.
+- **8 de `CADPROG.NSP`** — verificação de duplicidade fora do bloco `NO RECORDS FOUND`, fator de ajuste aplicado duas vezes por fórmulas diferentes, campo `FACTOR-K` do DDM sem escritor e sem leitor, truncamento `P9.2`→`P7.2` do valor base, chave `A4` inalcançável por tela `N4`, lista de códigos de elegibilidade inexistente, controle de perfil ADMIN ausente, e faixas de cálculo nunca gravadas.
+- **4 de `CCAUDIT.NSC`** — sequência de auditoria sem trava com descritor único, situação do lote sempre gravada como sucesso, valores anterior e novo nunca gravados, e 13 de cerca de 35 campos do DDM preenchidos.
+- **1 resíduo de `SIFAP-M-07`** — em que balde do relatório consolidado devem cair `X=CANCELED` e `R=REPROCESSED`.
+
+> [!NOTE]
+> Os três bônus prioritários para o facilitador estão marcados em [`mysteries-found.md`](mysteries-found.md): regimes de contribuição concorrentes, fator de ajuste duplo com a constante `0,347215` e `MOVE TRUE TO #FOUND` fora do bloco `NO RECORDS FOUND`.
 
 ---
 
