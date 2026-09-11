@@ -1,0 +1,104 @@
+%%{init: {'theme':'neutral','themeVariables':{'fontFamily':'ui-sans-serif, system-ui, sans-serif','primaryColor':'#F5F5F5','primaryTextColor':'#171717','primaryBorderColor':'#171717','lineColor':'#525252','secondaryColor':'#FFFFFF','tertiaryColor':'#FAFAFA','background':'#FFFFFF'}}}%%
+flowchart TD
+    classDef step fill:#F5F5F5,stroke:#171717,color:#171717
+    classDef alt fill:#FFFFFF,stroke:#525252,color:#171717
+    classDef muted fill:#FAFAFA,stroke:#A3A3A3,color:#404040
+    classDef result fill:#FFFFFF,stroke:#171717,color:#171717,stroke-width:2px
+
+    subgraph JOB["Batch — Control-M"]
+        SIFAPJ01["SIFAPJ01 · STEP010"]
+        SIFAPJ02["SIFAPJ02 · STEP010"]
+    end
+
+    subgraph BATCH["Batch (.NSP)"]
+        BATCHPGT["BATCHPGT"]
+        BATCHREL["BATCHREL"]
+        BATCHCON["BATCHCON"]
+    end
+
+    subgraph ONLINE["Online (.NSP)"]
+        CADBENEF["CADBENEF"]
+        CADDEPEN["CADDEPEN"]
+        CADPROG["CADPROG"]
+        CONSBENF["CONSBENF"]
+        VALDOCS["VALDOCS"]
+        CALCCORR["CALCCORR"]
+        CALCDSCT["CALCDSCT"]
+        RELPGT["RELPGT"]
+        RELAUDIT["RELAUDIT"]
+    end
+
+    subgraph SUB["Subprogramas (.NSN)"]
+        SUBVALCP["SUBVALCP"]
+        SUBVALNI["SUBVALNI"]
+        VALBENEF["VALBENEF"]
+        VALELEG["VALELEG"]
+        CALCBENF["CALCBENF"]
+    end
+
+    subgraph CC["Copycodes (.NSC)"]
+        CCAUDIT["CCAUDIT"]
+        CCVALCPF["CCVALCPF"]
+    end
+
+    BENEFIC[("BENEFIC · 150")]
+    SOCPROG[("SOCPROG · 151")]
+    PAYMENT[("PAYMENT · 152")]
+    AUDIT[("AUDIT · 153")]
+
+    SIFAPJ01 --> BATCHPGT
+    SIFAPJ02 --> BATCHREL
+
+    BATCHPGT -->|CALLNAT| SUBVALCP
+    BATCHPGT -->|CALLNAT| VALELEG
+    BATCHPGT -->|CALLNAT| CALCBENF
+    CADBENEF -->|CALLNAT| SUBVALCP
+    CADBENEF -->|CALLNAT| SUBVALNI
+    CADBENEF -->|CALLNAT| VALBENEF
+    CALCCORR -->|CALLNAT| SUBVALCP
+    CONSBENF -->|CALLNAT| SUBVALCP
+    VALDOCS  -->|CALLNAT| SUBVALNI
+
+    BATCHPGT -.->|INCLUDE| CCAUDIT
+    BATCHCON -.->|INCLUDE| CCAUDIT
+    CADBENEF -.->|INCLUDE| CCAUDIT
+    CADDEPEN -.->|INCLUDE| CCAUDIT
+    CADDEPEN -.->|INCLUDE| CCVALCPF
+    CADPROG  -.->|INCLUDE| CCAUDIT
+    CALCCORR -.->|INCLUDE| CCAUDIT
+    CONSBENF -.->|INCLUDE| CCAUDIT
+    SUBVALCP -.->|INCLUDE| CCVALCPF
+
+    BATCHPGT -->|READ| BENEFIC
+    BATCHPGT -->|"READ / FIND NUMBER / STORE"| PAYMENT
+    BATCHPGT -->|FIND| SOCPROG
+    BATCHREL -->|READ| PAYMENT
+    BATCHREL -->|FIND| BENEFIC
+    BATCHCON -->|"FIND / UPDATE"| PAYMENT
+    BATCHCON -->|"READ / STORE"| AUDIT
+
+    CADBENEF -->|"FIND / STORE / UPDATE"| BENEFIC
+    CADDEPEN -->|"FIND / UPDATE"| BENEFIC
+    CADPROG  -->|"FIND / STORE"| SOCPROG
+    CONSBENF -->|FIND| BENEFIC
+    CONSBENF -->|READ| PAYMENT
+    CALCCORR -->|"READ / UPDATE"| PAYMENT
+    CALCDSCT -->|"FIND / UPDATE"| PAYMENT
+    CALCDSCT -->|FIND| BENEFIC
+    RELPGT   -->|READ| PAYMENT
+    RELPGT   -->|FIND| BENEFIC
+    RELAUDIT -->|"READ / HISTOGRAM"| AUDIT
+
+    CALCBENF -->|FIND| BENEFIC
+    CALCBENF -->|FIND| SOCPROG
+    CALCBENF -->|STORE| PAYMENT
+    VALELEG  -->|FIND| BENEFIC
+    VALELEG  -->|FIND| SOCPROG
+    CCAUDIT  -->|"READ / STORE"| AUDIT
+
+    class SIFAPJ01,SIFAPJ02 muted
+    class BATCHPGT,BATCHREL,BATCHCON result
+    class CADBENEF,CADDEPEN,CADPROG,CONSBENF,VALDOCS,CALCCORR,CALCDSCT,RELPGT,RELAUDIT step
+    class SUBVALCP,SUBVALNI,VALBENEF,VALELEG,CALCBENF alt
+    class CCAUDIT,CCVALCPF muted
+    class BENEFIC,SOCPROG,PAYMENT,AUDIT result
