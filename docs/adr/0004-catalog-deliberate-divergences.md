@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD024 -->
-
 # ADR-0004: Divergências deliberadas do Catálogo de Programas Sociais
 
 > **Trilha:** [Kit do Time](../../README.md) › [Documentação](../README.md) › [ADRs](README.md) › **ADR-0004**

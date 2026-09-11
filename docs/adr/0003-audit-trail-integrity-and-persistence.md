@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD024 -->
-
 # ADR-0003: Integridade e persistência da trilha de auditoria
 
 > **Trilha:** [Kit do Time](../../README.md) › [Documentação](../README.md) › [ADRs](README.md) › **ADR-0003**

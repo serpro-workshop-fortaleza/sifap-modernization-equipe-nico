@@ -40,7 +40,7 @@ jobs:
             frontend:
               - 'frontend/**'
               - 'package.json'
-              - 'pnpm-lock.yaml'
+              - 'package-lock.json'
             infra:
               - 'infra/**'
               - '**/*.tf'
@@ -125,32 +125,28 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      - name: Instalar pnpm
-        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
-        with:
-          version: 9
       - name: Configurar Node 20
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: "20"
-          cache: pnpm
-          cache-dependency-path: frontend/pnpm-lock.yaml
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
       - name: Instalar dependências
         run: |
           set -euo pipefail
-          pnpm install --frozen-lockfile
+          npm ci
       - name: Executar análise estática
         run: |
           set -euo pipefail
-          pnpm lint
+          npm run lint
       - name: Verificar tipos
         run: |
           set -euo pipefail
-          pnpm typecheck
+          npm run typecheck
       - name: Testar
         run: |
           set -euo pipefail
-          pnpm test --run --coverage
+          npm run test:coverage
 
   infra:
     name: Infraestrutura (Terraform)
