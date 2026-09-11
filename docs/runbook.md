@@ -30,14 +30,42 @@ specify version
 > [!NOTE]
 > O kit não inclui um protótipo pronto. Quando o time criar `backend/`, `frontend/` e, se necessário, `infra/`, registre aqui os comandos reais de execução.
 
-Depois de criar o protótipo, documente:
+URLs confirmadas em execução local em 2026-09-11:
 
 | Serviço | URL / Comando |
 |---|---|
-| Health do backend | — |
-| Swagger UI | — |
-| Frontend local | — |
-| Credenciais da demonstração | — |
+| API do backend | `http://localhost:8080/api/v1/programas-sociais` |
+| OpenAPI JSON | `http://localhost:8080/v3/api-docs` |
+| Swagger UI | `http://localhost:8080/swagger-ui/index.html` |
+| Frontend local | `http://localhost:3000` |
+| Inclusão de programa | `http://localhost:3000/programas-sociais/novo` |
+| Consulta de programa | `http://localhost:3000/programas-sociais/<codigo>` |
+| Health do backend | Não disponível; o protótipo não inclui Spring Boot Actuator |
+| Credenciais da demonstração | Não se aplica; autenticação está fora do recorte |
+
+### Iniciar o protótipo
+
+Defina uma senha somente no ambiente local e inicie o PostgreSQL:
+
+```bash
+export POSTGRES_PASSWORD='<senha-local>'
+docker compose -f backend/compose.yml up -d --wait
+```
+
+Em outro terminal, inicie o backend:
+
+```bash
+cd backend
+./mvnw spring-boot:run
+```
+
+Em outro terminal, instale exatamente o lockfile e inicie o frontend:
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
 
 ---
 
@@ -49,16 +77,21 @@ Depois de criar o protótipo, documente:
 git status
 ```
 
-- [ ] **Execute os testes do backend** (quando `backend/` existir):
+- [ ] **Execute a validação do backend:**
 
 ```bash
-cd backend && ./mvnw test
+cd backend && ./mvnw -B verify
 ```
 
-- [ ] **Execute os testes do frontend** (quando `frontend/` existir):
+- [ ] **Execute a validação do frontend:**
 
 ```bash
-cd frontend && npm test
+cd frontend
+npm ci
+npm run lint
+npm run typecheck
+npm run test:coverage
+npm run build
 ```
 
 ---
@@ -79,17 +112,13 @@ A CI é executada automaticamente em pushes para `main`, `develop`, `spec/**` e 
 
 ## Azure — Estágio 4
 
-O Estágio 4 é o momento em que o time aplica o Terraform a uma assinatura de sandbox fornecida pelos facilitadores.
+**Status neste recorte:** Terraform não criado e não aplicável. O Estágio 4
+permite registrar esse resultado quando IaC não é necessária para a entrega.
+Não há diretório `infra/` nem plano Terraform para validar.
 
 > [!CAUTION]
-> Cada time tem uma única cota de assinatura. Marque todos os recursos com `team=workshop-XX` ou `apply` falhará.
-
-```bash
-cd infra
-terraform init
-terraform plan -var-file=envs/dev/terraform.tfvars
-terraform apply -var-file=envs/dev/terraform.tfvars
-```
+> Não execute `terraform apply` durante a imersão. Se IaC entrar em um recorte
+> futuro, primeiro crie e revise os módulos e valide `terraform plan`.
 
 ---
 
@@ -99,7 +128,7 @@ terraform apply -var-file=envs/dev/terraform.tfvars
 |---|---|---|---|
 | O ambiente local trava | A porta 5432, 8080 ou 3000 já está em uso | Execute `lsof -i :5432` e encerre o processo | O serviço inicia sem erro de porta |
 | `mvn verify` falha no Testcontainers | O Docker não está em execução | Inicie o Docker Desktop | Os testes passam na próxima execução |
-| `pnpm test` falha nos snapshots | O componente foi alterado intencionalmente | Execute `pnpm test -- -u` para atualizar os snapshots | Os testes passam após a atualização |
+| `npm test` falha após alteração intencional | O comportamento esperado do teste mudou | Revise a alteração e execute `npm test` novamente | Os testes passam sem casos desabilitados |
 | `terraform apply` é rejeitado | O recurso não tem a tag `team=` | Adicione a tag ao recurso que falhou | `terraform plan` não apresenta erros de validação |
 | O GitHub Actions não consegue acessar o Azure | Divergência na declaração do subject OIDC | Execute `az ad sp create-for-rbac` novamente para o time | O fluxo de trabalho passa na próxima execução |
 

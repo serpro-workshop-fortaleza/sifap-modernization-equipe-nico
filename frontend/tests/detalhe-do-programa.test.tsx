@@ -20,12 +20,12 @@ describe('DetalheDoPrograma', () => {
     const rotulos = Array.from(container.querySelectorAll('dt')).map((dt) => dt.textContent);
 
     expect(rotulos).toEqual([
-      'Codigo',
+      'Código',
       'Nome',
       'Tipo',
       'Valor base',
-      'Codigo de elegibilidade',
-      'Situacao',
+      'Código de elegibilidade',
+      'Situação',
     ]);
   });
 
@@ -43,7 +43,7 @@ describe('DetalheDoPrograma', () => {
     // REQ-003
     render(<DetalheDoPrograma programa={PROGRAMA} />);
 
-    expect(screen.getByText('Assistencia')).toBeInTheDocument();
+    expect(screen.getByText('Assistência')).toBeInTheDocument();
     expect(screen.getByText('Ativo')).toBeInTheDocument();
   });
 
@@ -51,7 +51,7 @@ describe('DetalheDoPrograma', () => {
     // REQ-011
     render(<DetalheDoPrograma programa={{ ...PROGRAMA, codigoElegibilidade: null }} />);
 
-    expect(screen.getByText('Nao informado')).toBeInTheDocument();
+    expect(screen.getByText('Não informado')).toBeInTheDocument();
   });
 });
 
@@ -60,6 +60,8 @@ describe('ProgramaNaoEncontrado', () => {
     // REQ-012
     render(<ProgramaNaoEncontrado codigo="9999" />);
 
-    expect(screen.getByRole('alert')).toHaveTextContent('Programa social 9999 nao encontrado.');
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'Não foi localizado um programa social com o código 9999.',
+    );
   });
 });

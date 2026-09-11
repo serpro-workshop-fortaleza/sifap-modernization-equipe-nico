@@ -5,11 +5,12 @@
 | Field | Value |
 |---|---|
 | Draft | `04-evolution/issues/test-social-program-query-page.md` |
+| Technical review | Passed against REQ-011 and REQ-012 on 2026-09-11 |
 | GitHub Issue | Pending publication |
 | Assigned to Copilot | No |
 | Started at | Not started |
 | Pull request | Not available |
-| Current result | Draft reviewed locally; delegation pending |
+| Current result | Draft approved; delegation pending manual publication |
 
 ## Publication
 
@@ -20,12 +21,17 @@ exist in the repository, then run:
 gh issue create \
   --title "Add route-level tests for the social program query page" \
   --body-file 04-evolution/issues/test-social-program-query-page.md \
-  --label "test,copilot-agent,frontend"
+  --label "enhancement"
 ```
 
 After publication, assign the Issue to Copilot through the GitHub interface and
 replace the pending fields above with the Issue URL, start time, and assignment
 status.
+
+The repository currently provides the `enhancement` label, but does not provide
+the suggested `test`, `frontend`, or `copilot-agent` labels. The REST assignee
+check also did not expose `copilot` as assignable, so availability must be
+confirmed in the GitHub interface after publication.
 
 ## Expected Change
 
@@ -70,6 +76,11 @@ does not approve.
 
 ## Result
 
-Delegation has not started. Record the Issue URL, pull request URL, files
-changed, tests added, CI result, review decision, and any manual corrections
-after the Agent produces a result.
+The technical review passed: the acceptance criteria are limited to the
+existing REQ-011 and REQ-012 behavior, the expected change fits in one small
+pull request, and no requirement or architecture decision was added.
+
+Delegation has not started because the Issue has not been published. No pull
+request or Agent output exists to review. After manual publication, record the
+Issue URL, assignment result, pull request URL, files changed, tests added, CI
+result, review decision, and any manual corrections.

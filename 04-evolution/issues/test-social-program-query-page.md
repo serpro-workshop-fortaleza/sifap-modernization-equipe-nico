@@ -58,9 +58,7 @@ Consult without changing unless a test exposes a defect:
 
 ## Labels
 
-- `test`
-- `copilot-agent`
-- `frontend`
+- `enhancement`
 
 ## Related Requirements
 

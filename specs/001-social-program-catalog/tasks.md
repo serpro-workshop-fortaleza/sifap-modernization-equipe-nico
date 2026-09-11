@@ -2,7 +2,7 @@
 feature: "001-social-program-catalog"
 title: "Tarefas — Catálogo de Programas Sociais"
 version: "1.0.0"
-status: "rascunho"
+status: "entregáveis presentes; rastreabilidade e revisão pendentes"
 author: "Equipe Nico"
 date: "2026-09-10"
 ---
@@ -16,12 +16,28 @@ date: "2026-09-10"
 | Campo | Valor |
 |---|---|
 | **Branch** | `impl/001-social-program-catalog`, criada a partir de `develop` |
-| **Tarefas** | 18 |
+| **Tarefas** | 19 (`T00` e `T01` a `T18`) |
 | **Bloqueadores ativos** | nenhum — a questão P4 foi fechada em 2026-09-10 |
-| **Ordem** | Teste primeiro em toda tarefa de código |
+| **Evidência de implementação** | Commit `fd326ae`; CI verde em `a9e8534`; backend e frontend presentes |
+| **Ordem TDD** | Planejada, mas a sequência histórica não é comprovável pelo commit consolidado |
 
 > [!WARNING]
 > A tarefa T00 implementa uma **decisão provisória**: o usuário responsável do evento de auditoria é a constante `SIFAPSYS`. Enquanto ela valer, a trilha não atribui responsabilidade a pessoa alguma, o que não cumpre a finalidade da IN-TCU 63/2010 citada em `AUDIT.ddm:L13-L18`. A fatia seguinte não pode ir para produção sem substituí-la. Ver P4 na seção 8 de [`plan.md`](plan.md).
+
+## Status de execução
+
+| Tarefas | Status comprovado | Evidência principal |
+|---|---|---|
+| T01–T05 | Entregáveis presentes | `backend/pom.xml`, `backend/compose.yml`, `ArquiteturaTest` e migração/teste de imutabilidade |
+| T06–T11 | Entregáveis presentes | Objetos de domínio e respectivos testes unitários |
+| T00, T12–T14 | Entregáveis presentes | Módulo de auditoria e testes de usuário fixo, transação, imutabilidade e concorrência |
+| T15–T16 | Entregáveis presentes | Serviço, controller e testes de aplicação/API |
+| T17–T18 | Entregáveis presentes | Rotas Next.js, Server Action e testes de frontend |
+
+Os entregáveis foram integrados pelo commit `fd326ae`, que referencia
+REQ-001 a REQ-017. A CI do commit `a9e8534` aprovou backend, frontend e
+rastreabilidade. Não há PR registrado e o commit consolidado não permite
+comprovar a ordem histórica de TDD.
 
 ---
 
@@ -109,13 +125,18 @@ Todo requisito de [`spec.md`](spec.md) tem ao menos uma tarefa.
 
 ## Definição de pronto da fatia
 
-- [ ] Todas as 18 tarefas concluídas.
-- [ ] Backend verde com `./mvnw -B verify`; cobertura ≥ 70%.
-- [ ] Frontend verde; cobertura ≥ 60%.
-- [ ] Migração Flyway aplicada de base vazia sem intervenção manual.
-- [ ] OpenAPI publicado e coerente com a seção 4 de [`plan.md`](plan.md).
-- [ ] Cada teste referencia seu REQ-ID em comentário inline.
+- [x] Os entregáveis das 19 tarefas estão presentes no repositório.
+- [x] Backend verde com `./mvnw -B verify`; cobertura ≥ 70%.
+- [x] Frontend verde; cobertura ≥ 60%.
+- [x] Migração Flyway validada pelos testes de integração em PostgreSQL.
+- [x] OpenAPI gerado pelo `springdoc-openapi` e controllers anotados conforme a seção 4 de [`plan.md`](plan.md).
+- [ ] Todos os 17 requisitos possuem referências em testes; REQ-013 está pendente.
 - [ ] Revisão por par registrada em PR antes da integração em `develop`.
+
+> [!NOTE]
+> O repositório comprova os entregáveis e os testes, mas não comprova a ordem
+> histórica vermelho-verde-refatorar. A API do GitHub não registra PR para a
+> integração da branch `karlos` em `develop`.
 
 ---
 

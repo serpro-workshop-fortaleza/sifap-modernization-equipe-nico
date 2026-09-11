@@ -20,31 +20,42 @@
 
 | Campo | Valor |
 |---|---|
-| **Time** | `<!-- preencher -->` |
-| **Data** | `<!-- YYYY-MM-DD -->` |
+| **Time** | Equipe Nico |
+| **Data** | 2026-09-11 |
 | **Edição** | `<!-- preencher -->` |
 | **Participantes** | `<!-- listar integrantes -->` |
 
 ---
 
-## 1. Issues criadas
+## Resultado observado
+
+| Campo | Resultado |
+|---|---|
+| Rascunho | `04-evolution/issues/test-social-program-query-page.md` |
+| Issue publicada | Não |
+| Atribuição ao Copilot | Não realizada |
+| Execução do Agent | Não iniciada |
+| Pull request do Agent | Não existe |
+| Próxima etapa | Publicar manualmente e confirmar a disponibilidade do Copilot na interface |
+
+## 1. Issues preparadas ou criadas
 
 ### Issue 1
 
 | Campo | Valor |
 |---|---|
-| **Título** | `<!-- preencher -->` |
-| **Link** | `<!-- URL da Issue no GitHub -->` |
-| **Descrição breve** | `<!-- uma a duas frases -->` |
+| **Título** | Add route-level tests for the social program query page |
+| **Link** | Não disponível; Issue não publicada |
+| **Descrição breve** | Rascunho revisado para testar a rota de consulta existente, limitado a REQ-011 e REQ-012 |
 | **Tempo para escrever a Issue** | `___ min` |
 
 ### Issue 2
 
 | Campo | Valor |
 |---|---|
-| **Título** | `<!-- preencher -->` |
-| **Link** | `<!-- URL da Issue no GitHub -->` |
-| **Descrição breve** | `<!-- uma a duas frases -->` |
+| **Título** | Não houve segunda Issue |
+| **Link** | Não se aplica |
+| **Descrição breve** | Não se aplica |
 | **Tempo para escrever a Issue** | `___ min` |
 
 ---
@@ -55,23 +66,23 @@
 
 | Campo | Valor |
 |---|---|
-| **Link** | `<!-- URL do PR -->` |
-| **Tempo gasto pelo Agent** | `___ min` |
-| **Arquivos modificados** | `___` |
-| **Testes criados** | Sim / Não |
-| **Exigiu alterações manuais** | Sim / Não |
-| **Merge realizado** | Sim / Não |
+| **Link** | Não disponível; delegação não iniciada |
+| **Tempo gasto pelo Agent** | Não se aplica |
+| **Arquivos modificados** | Nenhum |
+| **Testes criados** | Não |
+| **Exigiu alterações manuais** | Não se aplica |
+| **Merge realizado** | Não |
 
 ### PR 2 (da Issue 2)
 
 | Campo | Valor |
 |---|---|
-| **Link** | `<!-- URL do PR -->` |
-| **Tempo gasto pelo Agent** | `___ min` |
-| **Arquivos modificados** | `___` |
-| **Testes criados** | Sim / Não |
-| **Exigiu alterações manuais** | Sim / Não |
-| **Merge realizado** | Sim / Não |
+| **Link** | Não se aplica |
+| **Tempo gasto pelo Agent** | Não se aplica |
+| **Arquivos modificados** | Nenhum |
+| **Testes criados** | Não |
+| **Exigiu alterações manuais** | Não se aplica |
+| **Merge realizado** | Não |
 
 ---
 
@@ -79,7 +90,7 @@
 
 > Liste o que o Agent fez bem. Exemplos: entendeu a arquitetura, criou testes adequados, seguiu as convenções de nomenclatura.
 
-1. `<!-- preencher -->`
+1. Não avaliável: o Agent não recebeu nem executou a Issue.
 2. `<!-- preencher -->`
 3. `<!-- preencher -->`
 
@@ -89,7 +100,7 @@
 
 > O que vocês não esperavam? Inclua surpresas positivas ou negativas.
 
-1. `<!-- preencher -->`
+1. Não avaliável antes da delegação.
 2. `<!-- preencher -->`
 3. `<!-- preencher -->`
 
@@ -99,7 +110,7 @@
 
 > Em que pontos o Agent errou, entendeu mal a tarefa ou produziu código inadequado?
 
-1. `<!-- preencher -->`
+1. Nenhuma saída foi produzida para avaliação.
 2. `<!-- preencher -->`
 3. `<!-- preencher -->`
 
@@ -112,7 +123,7 @@
 - [ ] Lógica de negócio incorreta
 - [ ] Tratamento de erros ausente
 - [ ] Credenciais ou dados sensíveis no código
-- [ ] Outro: `___`
+- [ ] Outro: delegação não iniciada
 
 ---
 
@@ -120,12 +131,12 @@
 
 | Critério | Nota (1–5) | Comentário |
 |---|---|---|
-| Correção do código | | |
-| Alinhamento com a arquitetura | | |
-| Qualidade dos testes | | |
-| Documentação gerada | | |
-| Clareza do código | | |
-| **Média geral** | | |
+| Correção do código | Não se aplica | Nenhum PR gerado |
+| Alinhamento com a arquitetura | Não se aplica | Nenhum PR gerado |
+| Qualidade dos testes | Não se aplica | Nenhum PR gerado |
+| Documentação gerada | Não se aplica | Nenhum PR gerado |
+| Clareza do código | Não se aplica | Nenhum PR gerado |
+| **Média geral** | Não se aplica | Delegação não iniciada |
 
 Escala: 1 = Inadequado, 2 = Abaixo das expectativas, 3 = Aceitável, 4 = Bom, 5 = Excelente.
 
@@ -157,11 +168,11 @@ Escala: 1 = Inadequado, 2 = Abaixo das expectativas, 3 = Aceitável, 4 = Bom, 5 
 
 | Aspecto | Modo Agent | Modo Ask do GitHub Copilot | Manual |
 |---|---|---|---|
-| Velocidade | | | |
-| Qualidade | | | |
-| Controle | | | |
-| Aprendizado | | | |
-| Quando usar | | | |
+| Velocidade | Não avaliada | `<!-- preencher -->` | `<!-- preencher -->` |
+| Qualidade | Não avaliada | `<!-- preencher -->` | `<!-- preencher -->` |
+| Controle | Não avaliado | `<!-- preencher -->` | `<!-- preencher -->` |
+| Aprendizado | Não avaliado | `<!-- preencher -->` | `<!-- preencher -->` |
+| Quando usar | Não avaliado | `<!-- preencher -->` | `<!-- preencher -->` |
 
 ---
 
@@ -169,7 +180,10 @@ Escala: 1 = Inadequado, 2 = Abaixo das expectativas, 3 = Aceitável, 4 = Bom, 5 
 
 > Espaço para qualquer observação adicional sobre o uso de IA generativa no desenvolvimento:
 
-`<!-- preencher -->`
+O rascunho foi revisado localmente, mas não foi publicado nem atribuído ao
+Copilot. Consequentemente, não há execução, PR, revisão de código ou decisão de
+merge a relatar. Os campos que dependem da opinião ou da presença das pessoas
+participantes permanecem em aberto.
 
 ---
 

@@ -2,7 +2,7 @@
 feature: "001-social-program-catalog"
 title: "Catálogo de Programas Sociais"
 version: "1.0.0"
-status: "rascunho"
+status: "implementada; aprovação formal não registrada"
 author: "Equipe Nico"
 date: "2026-09-10"
 bounded_context: "Catálogo de Programas Sociais"

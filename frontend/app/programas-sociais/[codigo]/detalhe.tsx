@@ -1,8 +1,8 @@
 import type { ProgramaSocialConsultado, SituacaoPrograma, TipoPrograma } from '@/lib/api/tipos';
 
 const TIPOS: Record<TipoPrograma, string> = {
-  A: 'Assistencia',
-  P: 'Previdencia',
+  A: 'Assistência',
+  P: 'Previdência',
   T: 'Trabalho',
 };
 
@@ -15,35 +15,32 @@ const SITUACOES: Record<SituacaoPrograma, string> = {
 const MOEDA = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
 /** REQ-011: exatamente estes seis campos. Renda, idades e fator de ajuste nao sao apresentados. */
-export function DetalheDoPrograma({ programa }: { programa: ProgramaSocialConsultado }) {
+export function DetalheDoPrograma({ programa }: Readonly<{ programa: ProgramaSocialConsultado }>) {
   return (
-    <dl className="grid grid-cols-[12rem_1fr] gap-y-2">
-      <dt className="font-medium text-slate-700">Codigo</dt>
-      <dd className="text-slate-900">{programa.codigo}</dd>
-
-      <dt className="font-medium text-slate-700">Nome</dt>
-      <dd className="text-slate-900">{programa.nome}</dd>
-
-      <dt className="font-medium text-slate-700">Tipo</dt>
-      <dd className="text-slate-900">{TIPOS[programa.tipo] ?? programa.tipo}</dd>
-
-      <dt className="font-medium text-slate-700">Valor base</dt>
-      <dd className="text-slate-900">{MOEDA.format(programa.valorBase)}</dd>
-
-      <dt className="font-medium text-slate-700">Codigo de elegibilidade</dt>
-      <dd className="text-slate-900">{programa.codigoElegibilidade ?? 'Nao informado'}</dd>
-
-      <dt className="font-medium text-slate-700">Situacao</dt>
-      <dd className="text-slate-900">{SITUACOES[programa.situacao] ?? programa.situacao}</dd>
+    <dl className="divide-y divide-[var(--govbr-gray-20)] border-y border-[var(--govbr-gray-20)]">
+      {[
+        ['Código', programa.codigo],
+        ['Nome', programa.nome],
+        ['Tipo', TIPOS[programa.tipo] ?? programa.tipo],
+        ['Valor base', MOEDA.format(programa.valorBase)],
+        ['Código de elegibilidade', programa.codigoElegibilidade ?? 'Não informado'],
+        ['Situação', SITUACOES[programa.situacao] ?? programa.situacao],
+      ].map(([rotulo, valor]) => (
+        <div className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6" key={rotulo}>
+          <dt className="font-semibold text-[var(--govbr-gray-70)]">{rotulo}</dt>
+          <dd className="break-words text-[var(--govbr-gray-80)]">{valor}</dd>
+        </div>
+      ))}
     </dl>
   );
 }
 
 /** REQ-012: ausencia e informada como ausencia, nunca como erro de processamento. */
-export function ProgramaNaoEncontrado({ codigo }: { codigo: string }) {
+export function ProgramaNaoEncontrado({ codigo }: Readonly<{ codigo: string }>) {
   return (
-    <p role="alert" className="rounded border border-amber-300 bg-amber-50 px-3 py-2 text-amber-900">
-      Programa social {codigo} nao encontrado.
-    </p>
+    <div role="alert" className="border-l-4 border-[var(--govbr-warning-50)] bg-[var(--govbr-warning-10)] p-4 text-[var(--govbr-gray-80)]">
+      <p className="font-bold">Programa não encontrado</p>
+      <p className="mt-1">Não foi localizado um programa social com o código {codigo}.</p>
+    </div>
   );
 }

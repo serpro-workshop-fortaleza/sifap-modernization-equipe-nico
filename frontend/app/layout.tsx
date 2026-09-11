@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { CabecalhoGovBr, RodapeGovBr } from "@/components/govbr-shell";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "SIFAP — Catalogo de Programas Sociais",
-  description: "Inclusao e consulta de programas sociais do SIFAP",
+  title: "SIFAP — Catálogo de Programas Sociais",
+  description: "Inclusão e consulta de programas sociais do SIFAP",
 };
 
 export default function RootLayout({
@@ -24,10 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className="flex min-h-screen flex-col antialiased">
+        <CabecalhoGovBr />
+        <div className="flex flex-1 flex-col">{children}</div>
+        <RodapeGovBr />
       </body>
     </html>
   );

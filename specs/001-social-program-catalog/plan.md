@@ -2,7 +2,7 @@
 feature: "001-social-program-catalog"
 title: "Plano — Catálogo de Programas Sociais"
 version: "1.0.0"
-status: "rascunho"
+status: "implementado; aprovação formal não registrada"
 author: "Equipe Nico"
 date: "2026-09-10"
 ---

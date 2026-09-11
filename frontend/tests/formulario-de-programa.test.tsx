@@ -6,9 +6,9 @@ import type { EstadoDoFormulario } from '@/app/programas-sociais/novo/estado';
 
 function preencherObrigatorios() {
   return {
-    codigo: screen.getByLabelText('Codigo'),
-    nome: screen.getByLabelText('Nome'),
-    valorBase: screen.getByLabelText('Valor base'),
+    codigo: screen.getByLabelText(/^Código \*/),
+    nome: screen.getByLabelText(/^Nome \*/),
+    valorBase: screen.getByLabelText(/^Valor base \*/),
   };
 }
 
@@ -18,17 +18,17 @@ describe('FormularioDePrograma', () => {
     render(<FormularioDePrograma acao={vi.fn()} />);
 
     for (const rotulo of [
-      'Codigo',
-      'Nome',
-      'Tipo',
-      'Valor base',
+      /^Código \*/,
+      /^Nome \*/,
+      /^Tipo \*/,
+      /^Valor base \*/,
       'Fator de ajuste',
-      'Codigo de elegibilidade',
-      'Data de criacao',
+      'Código de elegibilidade',
+      /^Data de criação \*/,
       'Data de encerramento',
-      'Renda per capita maxima',
-      'Idade minima',
-      'Idade maxima',
+      'Renda per capita máxima',
+      'Idade mínima',
+      'Idade máxima',
     ]) {
       expect(screen.getByLabelText(rotulo)).toBeInTheDocument();
     }
@@ -40,7 +40,7 @@ describe('FormularioDePrograma', () => {
     render(<FormularioDePrograma acao={vi.fn()} />);
 
     expect(screen.getByLabelText('Data de encerramento')).toHaveAccessibleDescription(
-      'Deixe em branco para vigencia indeterminada.',
+      'Deixe em branco para vigência indeterminada.',
     );
   });
 
@@ -64,8 +64,8 @@ describe('FormularioDePrograma', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(
       'valor base acima do limite de 99.999,99',
     );
-    expect(screen.getByLabelText('Valor base')).toHaveAttribute('aria-invalid', 'true');
-    expect(screen.getByLabelText('Codigo')).toHaveAttribute('aria-invalid', 'false');
+    expect(screen.getByLabelText(/^Valor base \*/)).toHaveAttribute('aria-invalid', 'true');
+    expect(screen.getByLabelText(/^Código \*/)).toHaveAttribute('aria-invalid', 'false');
   });
 
   it('should_confirm_the_insertion_with_the_program_code_when_the_api_accepts', async () => {
@@ -78,7 +78,7 @@ describe('FormularioDePrograma', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Incluir programa' }));
 
     expect(await screen.findByRole('status')).toHaveTextContent(
-      'Programa C001 incluido com sucesso.',
+      'Programa C001 incluído com sucesso.',
     );
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });

@@ -2,25 +2,39 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #333333;
+  --govbr-blue-warm-vivid-90: #071d41;
+  --govbr-blue-warm-vivid-80: #0c326f;
+  --govbr-blue-warm-vivid-70: #1351b4;
+  --govbr-blue-warm-vivid-20: #c5d4eb;
+  --govbr-gray-80: #333333;
+  --govbr-gray-70: #454545;
+  --govbr-gray-60: #555555;
+  --govbr-gray-40: #888888;
+  --govbr-gray-20: #cccccc;
+  --govbr-gray-5: #f8f8f8;
+  --govbr-success-60: #168821;
+  --govbr-success-10: #e3f5e1;
+  --govbr-danger-60: #e52207;
+  --govbr-danger-10: #fce8e6;
+  --govbr-warning-50: #ffbe2e;
+  --govbr-warning-10: #fff5c2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: "Rawline", "Noto Sans", sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rawline", "Noto Sans", sans-serif;
+  letter-spacing: 0;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--govbr-blue-warm-vivid-70);
+  outline-offset: 3px;
 }
